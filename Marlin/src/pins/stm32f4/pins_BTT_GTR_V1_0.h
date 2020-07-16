@@ -34,8 +34,20 @@
 // Onboard I2C EEPROM
 #define I2C_EEPROM
 #define MARLIN_EEPROM_SIZE 0x2000                 // 8KB (24C64 ... 64Kb = 8KB)
+/*
+// Use one of these or SDCard-based Emulation will be used
+#if NO_EEPROM_SELECTED
+  //#define SRAM_EEPROM_EMULATION                 // Use BackSRAM-based EEPROM emulation
+  #define FLASH_EEPROM_EMULATION                  // Use Flash-based EEPROM emulation
+#endif
 
-#define TP                                        // Enable to define servo and probe pins
+#if ENABLED(FLASH_EEPROM_EMULATION)
+  // Decrease delays and flash wear by spreading writes across the
+  // 128 kB sector allocated for EEPROM emulation.
+  #define FLASH_EEPROM_LEVELING
+#endif
+*/
+//#define TP                                        // Enable to define servo and probe pins
 
 //
 // Servos
@@ -47,14 +59,55 @@
 #define PS_ON_PIN                           PH6
 
 //
+// Trinamic Stallguard pins
+//
+//#define X_DIAG_PIN                          PF2  // X-
+//#define Y_DIAG_PIN                          PC13  // Y-
+//#define Z_DIAG_PIN                          PE0   // Z-
+//#define E0_DIAG_PIN                         PG14  // E0
+//#define E1_DIAG_PIN                         PG9  // E1
+//#define E2_DIAG_PIN                         PD3   // E2
+
+//
 // Limit Switches
 //
-#define X_MIN_PIN                           PF2
-#define X_MAX_PIN                           PG14
-#define Y_MIN_PIN                           PC13
-#define Y_MAX_PIN                           PG9
-#define Z_MIN_PIN                           PE0
-#define Z_MAX_PIN                           PD3
+
+#ifdef X_STALL_SENSITIVITY
+  #define X_STOP_PIN                  X_DIAG_PIN
+  #if X_HOME_DIR < 0
+    #define X_MAX_PIN                       PE15  // E0
+  #else
+    #define X_MIN_PIN                       PE15  // E0
+  #endif
+#else
+  #define X_MIN_PIN                         PF2  // X-
+  // #define X_MAX_PIN                         PG14  // E0  // Z2_USE_ENDSTOP
+#endif
+
+#ifdef Y_STALL_SENSITIVITY
+  #define Y_STOP_PIN                  Y_DIAG_PIN
+  #if Y_HOME_DIR < 0
+    #define Y_MAX_PIN                       PE10  // E1
+  #else
+    #define Y_MIN_PIN                       PE10  // E1
+  #endif
+#else
+  #define Y_MIN_PIN                         PC13  // Y-
+  // #define Y_MAX_PIN                         PG9  // E1
+#endif
+
+#ifdef Z_STALL_SENSITIVITY
+  #define Z_STOP_PIN                  Z_DIAG_PIN
+  #if Z_HOME_DIR < 0
+    #define Z_MAX_PIN                       PG5   // E2
+  #else
+    #define Z_MIN_PIN                       PG5   // E2
+  #endif
+#else 
+  #define Z_MIN_PIN                         PE0   // Z-
+  //#define Z_MAX_PIN                         PD3   // E2
+  #define Z2_USE_ENDSTOP                    PH6
+#endif
 
 //
 // Pins on the extender
@@ -64,6 +117,12 @@
 //#define Y_MIN_PIN                         PF4
 //#define Y2_MIN_PIN                        PI7
 //#define Z_MIN_PIN                         PF6
+
+// Z Probe must be this pin
+//
+#ifndef Z_MIN_PROBE_PIN
+  #define Z_MIN_PROBE_PIN                   PI11
+#endif
 
 #if ENABLED(TP) && !defined(Z_MIN_PROBE_PIN)
   #define Z_MIN_PROBE_PIN                   PH11  // Z Probe must be PH11
@@ -93,25 +152,25 @@
   #define Z_CS_PIN                          PB5
 #endif
 
-#define E0_STEP_PIN                         PG12
-#define E0_DIR_PIN                          PG11
-#define E0_ENABLE_PIN                       PG13
+#define Z2_STEP_PIN                          PG12
+#define Z2_DIR_PIN                           PG11  
+#define Z2_ENABLE_PIN                        PG13
+#ifndef Z2_CS_PIN
+  #define Z2_CS_PIN                          PG10
+#endif
+
+#define E0_STEP_PIN                         PD6
+#define E0_DIR_PIN                          PD5
+#define E0_ENABLE_PIN                       PD7
 #ifndef E0_CS_PIN
-  #define E0_CS_PIN                         PG10
+  #define E0_CS_PIN                         PD4
 #endif
 
-#define E1_STEP_PIN                         PD6
-#define E1_DIR_PIN                          PD5
-#define E1_ENABLE_PIN                       PD7
+#define E1_STEP_PIN                         PD1
+#define E1_DIR_PIN                          PD0
+#define E1_ENABLE_PIN                       PD2
 #ifndef E1_CS_PIN
-  #define E1_CS_PIN                         PD4
-#endif
-
-#define E2_STEP_PIN                         PD1
-#define E2_DIR_PIN                          PD0
-#define E2_ENABLE_PIN                       PD2
-#ifndef E2_CS_PIN
-  #define E2_CS_PIN                         PC12
+  #define E1_CS_PIN                         PC12
 #endif
 
 #define E3_STEP_PIN                         PF3
@@ -231,7 +290,8 @@
 //
 #define TEMP_0_PIN                          PC1   // T1 <-> E0
 #define TEMP_1_PIN                          PC2   // T2 <-> E1
-#define TEMP_2_PIN                          PC3   // T3 <-> E2
+//#define TEMP_2_PIN                          PC3   // T3 <-> E2
+#define TEMP_CHAMBER_PIN                    PC3   // T3 <-> E2
 
 #define TEMP_3_PIN                          PA3   // T4 <-> E3
 #define TEMP_4_PIN                          PF9   // T5 <-> E4
@@ -314,6 +374,8 @@
 //
 // LCDs and Controllers
 //
+#define NEOPIXEL_PIN                PF13
+
 #if HAS_SPI_LCD
   #define BEEPER_PIN                        PC11
   #define BTN_ENC                           PA15
