@@ -56,7 +56,7 @@
   #define SERVO0_PIN                        PB11
 #endif
 
-#define PS_ON_PIN                           PH6
+// #define PS_ON_PIN                           PH6
 
 //
 // Trinamic Stallguard pins
@@ -64,9 +64,9 @@
 //#define X_DIAG_PIN                          PF2  // X-
 //#define Y_DIAG_PIN                          PC13  // Y-
 //#define Z_DIAG_PIN                          PE0   // Z-
-//#define E0_DIAG_PIN                         PG14  // E0
-//#define E1_DIAG_PIN                         PG9  // E1
-//#define E2_DIAG_PIN                         PD3   // E2
+//#define Z2_DIAG_PIN                         PG14  // E0
+//#define E0_DIAG_PIN                         PG9  // E1
+//#define E1_DIAG_PIN                         PD3   // E2
 
 //
 // Limit Switches
@@ -81,7 +81,7 @@
   #endif
 #else
   #define X_MIN_PIN                         PF2  // X-
-  // #define X_MAX_PIN                         PG14  // E0  // Z2_USE_ENDSTOP
+  //#define X_MAX_PIN                         PG14  // E0  // Z2_USE_ENDSTOP
 #endif
 
 #ifdef Y_STALL_SENSITIVITY
@@ -105,8 +105,8 @@
   #endif
 #else 
   #define Z_MIN_PIN                         PE0   // Z-
-  //#define Z_MAX_PIN                         PD3   // E2
-  #define Z2_USE_ENDSTOP                    PH6
+  #define Z_MAX_PIN                         PD3   // E2
+  
 #endif
 
 //
