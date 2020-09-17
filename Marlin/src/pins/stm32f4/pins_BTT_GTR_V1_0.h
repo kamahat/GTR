@@ -35,12 +35,6 @@
 #define I2C_EEPROM
 #define MARLIN_EEPROM_SIZE                0x2000  // 8KB (24C64 ... 64Kb = 8KB)
 
-#if ENABLED(FLASH_EEPROM_EMULATION)
-  // Decrease delays and flash wear by spreading writes across the
-  // 128 kB sector allocated for EEPROM emulation.
-  #define FLASH_EEPROM_LEVELING
-#endif
-*/
 //#define TP                                        // Enable to define servo and probe pins
 
 //
