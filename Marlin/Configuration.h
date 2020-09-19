@@ -103,8 +103,10 @@
  * Note: The first serial port (-1 or 0) will always be used by the Arduino bootloader.
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
+ *  -1 pour USB
+ *  1 pour Serial
  */
-#define SERIAL_PORT -1
+#define SERIAL_PORT -1 
 
 /**
  * Select a secondary serial port on the board to use for communication with the host.
