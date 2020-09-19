@@ -93,8 +93,7 @@
   #endif
 #else 
   #define Z_MIN_PIN                         PE0   // Z-
-  #define Z_MAX_PIN                         PD3   // E2
-  
+  //#define Z_MAX_PIN                         PD3   // Z2-
 #endif
 
 //
@@ -105,6 +104,7 @@
 //#define Y_MIN_PIN                         PF4
 //#define Y2_MIN_PIN                        PI7
 //#define Z_MIN_PIN                         PF6
+#define Z2_MIN_PIN                          PH6
 
 // Z Probe must be this pin
 //
