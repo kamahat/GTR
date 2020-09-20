@@ -104,12 +104,12 @@
 //#define Y_MIN_PIN                         PF4
 //#define Y2_MIN_PIN                        PI7
 //#define Z_MIN_PIN                         PF6
-#define Z2_MIN_PIN                          PH6
+#define Z2_MIN_PIN                          PH6 // J77 Extend interface 2
 
 // Z Probe must be this pin
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN                   PI11
+  #define Z_MIN_PROBE_PIN                   PI11 // J76 Extend interface 1
 #endif
 
 #if ENABLED(TP) && !defined(Z_MIN_PROBE_PIN)

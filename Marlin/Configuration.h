@@ -664,7 +664,7 @@
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING false   // Set to true to invert the logic of the probe.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING true   // Set to true to invert the logic of the probe.
 
 /**
  * Stepper Drivers
@@ -863,7 +863,7 @@
 //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
+#define USE_PROBE_FOR_Z_HOMING
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1143,15 +1143,15 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 200  // miroir 298
-#define Y_BED_SIZE 200  // miroir 298
+#define X_BED_SIZE 298  // miroir 298
+#define Y_BED_SIZE 298  // miroir 298
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS -15
 #define Y_MIN_POS -37
 #define Z_MIN_POS -2
 #define X_MAX_POS 325 + X_MIN_POS
-#define Y_MAX_POS 225
+#define Y_MAX_POS 295
 #define Z_MAX_POS 307 + Z_MIN_POS
 
 /**
@@ -1406,7 +1406,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
