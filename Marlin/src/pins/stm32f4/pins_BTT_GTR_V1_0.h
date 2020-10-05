@@ -322,7 +322,10 @@
 #define FAN1_PIN                            PC8   // Fan1
 #define FAN2_PIN                            PI5   // Fan2
 
-//#define FAN3_PIN                            PI5   // Fan3
+#define E0_AUTO_FAN_PIN FAN1_PIN
+#define E1_AUTO_FAN_PIN FAN3_PIN
+
+#define FAN3_PIN                            PE9   // Fan3
 //#define FAN4_PIN                            PE9   // Fan4
 //#define FAN5_PIN                            PE11  // Fan5
 //#define FAN6_PIN                          PC9   // Fan6
