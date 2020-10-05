@@ -999,7 +999,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -13, 92, -0.2 }
+#define NOZZLE_TO_PROBE_OFFSET { -13, 82, -0.2 }
 #define ProbeDiameter 12
 
 // Most probes should stay away from the edges of the bed, but
@@ -1136,15 +1136,15 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 298  // miroir 298
-#define Y_BED_SIZE 298  // miroir 298
+#define X_BED_SIZE 295  // miroir 298
+#define Y_BED_SIZE 295  // miroir 298
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -15
-#define Y_MIN_POS -37
+#define X_MIN_POS -17
+#define Y_MIN_POS -32
 #define Z_MIN_POS -2
-#define X_MAX_POS 325 + X_MIN_POS
-#define Y_MAX_POS 295
+#define X_MAX_POS 308
+#define Y_MAX_POS 298
 #define Z_MAX_POS 307 + Z_MIN_POS
 
 /**
@@ -1311,7 +1311,7 @@
     // Experimental Subdivision of the grid by Catmull-Rom method.
     // Synthesizes intermediate points to produce a more detailed mesh.
     //
-    //#define ABL_BILINEAR_SUBDIVISION
+    #define ABL_BILINEAR_SUBDIVISION
     #if ENABLED(ABL_BILINEAR_SUBDIVISION)
       // Number of subdivisions between probe points
       #define BILINEAR_SUBDIVISIONS 3
