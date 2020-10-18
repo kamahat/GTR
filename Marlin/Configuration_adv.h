@@ -743,7 +743,7 @@
   // If not defined, probe limits will be used.
   // Override with 'M422 S<index> X<pos> Y<pos>'
   //#define Z_STEPPER_ALIGN_XY { {  10, 190 }, { 100,  10 }, { 190, 190 } }
-  #define Z_STEPPER_ALIGN_XY { {  PROBING_MARGIN , Y_BED_SIZE * 0.5 }, { X_BED_SIZE - PROBING_MARGIN -13,  Y_BED_SIZE * 0.5 } }
+  #define Z_STEPPER_ALIGN_XY { {  PROBING_MARGIN , Y_BED_SIZE * 0.5 }, { X_BED_SIZE - PROBING_MARGIN -5,  Y_BED_SIZE * 0.5 } }
   
   /**
    * Orientation for the automatically-calculated probe positions.
@@ -817,7 +817,7 @@
    *   M4: 40 = Clockwise, 41 = Counter-Clockwise
    *   M5: 50 = Clockwise, 51 = Counter-Clockwise
    */
-  #define TRAMMING_SCREW_THREAD 30
+  #define TRAMMING_SCREW_THREAD 40
 
 #endif
 
