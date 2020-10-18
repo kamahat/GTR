@@ -1005,7 +1005,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -12, 74, -0.2 }
+#define NOZZLE_TO_PROBE_OFFSET { -12, 79, -0.2 }
 #define ProbeDiameter 12
 
 // Most probes should stay away from the edges of the bed, but
@@ -1142,8 +1142,8 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 298  
-#define Y_BED_SIZE 298  
+#define X_BED_SIZE 295  
+#define Y_BED_SIZE 295  
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS -17
