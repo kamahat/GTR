@@ -744,7 +744,7 @@
   // Override with 'M422 S<index> X<pos> Y<pos>'
   //#define Z_STEPPER_ALIGN_XY { {  10, 190 }, { 100,  10 }, { 190, 190 } }
   //#define Z_STEPPER_ALIGN_XY { {  PROBING_MARGIN , Y_BED_SIZE * 0.5 }, { X_BED_SIZE - PROBING_MARGIN -5,  Y_BED_SIZE * 0.5 } }
-  #define Z_STEPPER_ALIGN_XY { {  10 , 175 }, { 280,  170 } }
+  #define Z_STEPPER_ALIGN_XY { {  20 , 155 }, { 285,  150 } }
   
   /**
    * Orientation for the automatically-calculated probe positions.
