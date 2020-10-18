@@ -743,7 +743,8 @@
   // If not defined, probe limits will be used.
   // Override with 'M422 S<index> X<pos> Y<pos>'
   //#define Z_STEPPER_ALIGN_XY { {  10, 190 }, { 100,  10 }, { 190, 190 } }
-  #define Z_STEPPER_ALIGN_XY { {  PROBING_MARGIN , Y_BED_SIZE * 0.5 }, { X_BED_SIZE - PROBING_MARGIN -5,  Y_BED_SIZE * 0.5 } }
+  //#define Z_STEPPER_ALIGN_XY { {  PROBING_MARGIN , Y_BED_SIZE * 0.5 }, { X_BED_SIZE - PROBING_MARGIN -5,  Y_BED_SIZE * 0.5 } }
+  #define Z_STEPPER_ALIGN_XY { {  10 , 175 }, { 280,  170 } }
   
   /**
    * Orientation for the automatically-calculated probe positions.
@@ -2475,10 +2476,10 @@
    * Define your own with:
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
-  #define CHOPPER_TIMING CHOPPER_DEFAULT_12V        // All axes (override below)
-  //#define CHOPPER_TIMING_X  CHOPPER_DEFAULT_12V   // For X Axes (override below)
+  #define CHOPPER_TIMING CHOPPER_DEFAULT_24V        // All axes (override below)
+  #define CHOPPER_TIMING_X  CHOPPER_09STEP_24V   // For X Axes (override below)
   //#define CHOPPER_TIMING_X2 CHOPPER_DEFAULT_12V
-  //#define CHOPPER_TIMING_Y  CHOPPER_DEFAULT_12V   // For Y Axes (override below)
+  #define CHOPPER_TIMING_Y  CHOPPER_09STEP_24V   // For Y Axes (override below)
   //#define CHOPPER_TIMING_Y2 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_Z  CHOPPER_DEFAULT_12V   // For Z Axes (override below)
   //#define CHOPPER_TIMING_Z2 CHOPPER_DEFAULT_12V
@@ -2589,7 +2590,7 @@
    *
    * Values from 0..1023, -1 to disable homing phase for that axis.
    */
-   #define TMC_HOME_PHASE { 128, 896, 896 }
+   #define TMC_HOME_PHASE { 896, 896, 896 }
 
   /**
    * Beta feature!
