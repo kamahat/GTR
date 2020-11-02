@@ -762,8 +762,8 @@
 #define X_AXIS_STEPS_PER_UNIT  (400 * X_MICROSTEPS ) / (20 *2)
 #define Y_AXIS_STEPS_PER_UNIT  (400 * Y_MICROSTEPS ) / (20 *2)
 #define Z_AXIS_STEPS_PER_UNIT  (200 * Z_MICROSTEPS /8) 
-#define E0_AXIS_STEPS_PER_UNIT 535
-#define E1_AXIS_STEPS_PER_UNIT 535
+#define E0_AXIS_STEPS_PER_UNIT (33.5 * E0_MICROSTEPS ) 
+#define E1_AXIS_STEPS_PER_UNIT (33.5 * E1_MICROSTEPS)
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { X_AXIS_STEPS_PER_UNIT, Y_AXIS_STEPS_PER_UNIT, Z_AXIS_STEPS_PER_UNIT , E0_AXIS_STEPS_PER_UNIT , E1_AXIS_STEPS_PER_UNIT }
 
 /**
@@ -771,11 +771,11 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 120, 120, 40, 80 ,80 }
+#define DEFAULT_MAX_FEEDRATE          { 120, 120, 40, 60 ,60 }
 
-#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
+//#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-  #define MAX_FEEDRATE_EDIT_VALUES    { 300, 300, 80, 170 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 300, 300, 80, 80 } // ...or, set your own edit limits
 #endif
 
 /**
