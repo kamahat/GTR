@@ -765,7 +765,7 @@
 */
 #define X_AXIS_STEPS_PER_UNIT  (400 * X_MICROSTEPS ) / (20 *2)
 #define Y_AXIS_STEPS_PER_UNIT  (400 * Y_MICROSTEPS ) / (20 *2)
-#define Z_AXIS_STEPS_PER_UNIT  (192 * Z_MICROSTEPS /8) 
+#define Z_AXIS_STEPS_PER_UNIT  (198 * Z_MICROSTEPS /8) 
 #define E0_AXIS_STEPS_PER_UNIT (33.5 * E0_MICROSTEPS ) 
 #define E1_AXIS_STEPS_PER_UNIT (33.5 * E1_MICROSTEPS)
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { X_AXIS_STEPS_PER_UNIT, Y_AXIS_STEPS_PER_UNIT, Z_AXIS_STEPS_PER_UNIT , E0_AXIS_STEPS_PER_UNIT , E1_AXIS_STEPS_PER_UNIT }
@@ -823,7 +823,7 @@
 
   //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
 
-  #define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
+  //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
   #if ENABLED(LIMITED_JERK_EDITING)
     #define MAX_JERK_EDIT_VALUES { 12, 12, 0.6, 10 } // ...or, set your own edit limits
   #endif
@@ -839,9 +839,10 @@
  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-  #define JUNCTION_DEVIATION_MM 0.4 * 10 * 10 / DEFAULT_ACCELERATION// 0.0216 //0.013 // (mm) Distance from real junction edge
+  #define JUNCTION_DEVIATION_MM 0.35 / DEFAULT_ACCELERATION// 0.0216 //0.013 // (mm) Distance from real junction edge
   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
                                       // for small segments (< 1mm) with large junction angles (> 135°).
+                                      // MAX_E_JERK(N) = SQRT((SQRT(0.5) * max_acceleration_mm_per_s2[E_AXIS] * junction_deviation_mm) / (1 - SQRT(0.5)))
 #endif
 
 /**

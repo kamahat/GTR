@@ -485,7 +485,7 @@
 #define CHAMBER_AUTO_FAN_PIN -1
 
 #define EXTRUDER_AUTO_FAN_TEMPERATURE 40
-#define EXTRUDER_AUTO_FAN_SPEED 200   // 255 == full speed // 180 trop bas
+#define EXTRUDER_AUTO_FAN_SPEED 180   // 255 == full speed // 180 trop bas
 #define CHAMBER_AUTO_FAN_TEMPERATURE 40
 #define CHAMBER_AUTO_FAN_SPEED 128
 
@@ -2616,7 +2616,7 @@
    *
    * Values from 0..1023, -1 to disable homing phase for that axis.
    */
-   #define TMC_HOME_PHASE { 896, 896, 896 }
+   #define TMC_HOME_PHASE { 896, 128, 128 }
 
   /**
    * Beta feature!
