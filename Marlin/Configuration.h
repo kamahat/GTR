@@ -502,13 +502,13 @@
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify between 1 and HOTENDS values per array.
     // If fewer than EXTRUDER values are provided, the last element will be repeated.
-    #define DEFAULT_Kp_LIST {  22.20,  22.20 }
-    #define DEFAULT_Ki_LIST {   1.08,   1.08 }
-    #define DEFAULT_Kd_LIST { 114.00, 114.00 }
+    #define DEFAULT_Kp_LIST {  20.25,  22.20 }
+    #define DEFAULT_Ki_LIST {   1.63,   1.08 }
+    #define DEFAULT_Kd_LIST { 62.77, 114.00 }
   #else
-    #define DEFAULT_Kp  22.20
-    #define DEFAULT_Ki   1.08
-    #define DEFAULT_Kd 114.00
+    #define DEFAULT_Kp  20.25
+    #define DEFAULT_Ki   1.63
+    #define DEFAULT_Kd 62.77
   #endif
 #endif // PIDTEMP
 
@@ -548,9 +548,9 @@
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
   // 2020-05-14 150°c
-  #define DEFAULT_bedKp 27.16
-  #define DEFAULT_bedKi 1.30
-  #define DEFAULT_bedKd 378.10
+  #define DEFAULT_bedKp 26.96
+  #define DEFAULT_bedKi 1.69
+  #define DEFAULT_bedKd 287.60
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -761,12 +761,14 @@
   moteur : 1.8°/tour (200pas/tour) * 1/16 µstep
   TR08x1.5
   => (200*16)/1.5
+
+  Extrudeur: R=6=60/12
 */
 #define X_AXIS_STEPS_PER_UNIT  (400 * X_MICROSTEPS ) / (20 *2)
 #define Y_AXIS_STEPS_PER_UNIT  (400 * Y_MICROSTEPS ) / (20 *2)
-#define Z_AXIS_STEPS_PER_UNIT  (200 * Z_MICROSTEPS /8) 
-#define E0_AXIS_STEPS_PER_UNIT 535
-#define E1_AXIS_STEPS_PER_UNIT 535
+#define Z_AXIS_STEPS_PER_UNIT  (198 * Z_MICROSTEPS /8) 
+#define E0_AXIS_STEPS_PER_UNIT (33.5 * E0_MICROSTEPS ) 
+#define E1_AXIS_STEPS_PER_UNIT (33.5 * E1_MICROSTEPS)
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { X_AXIS_STEPS_PER_UNIT, Y_AXIS_STEPS_PER_UNIT, Z_AXIS_STEPS_PER_UNIT , E0_AXIS_STEPS_PER_UNIT , E1_AXIS_STEPS_PER_UNIT }
 
 /**
@@ -774,11 +776,11 @@
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 40, 170 ,170 }
+#define DEFAULT_MAX_FEEDRATE          { 120, 120, 40, 60 ,60 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
-  #define MAX_FEEDRATE_EDIT_VALUES    { 300, 300, 120, 170,170 } // ...or, set your own edit limits
+  #define MAX_FEEDRATE_EDIT_VALUES    { 300, 300, 80, 80 } // ...or, set your own edit limits
 #endif
 
 /**
@@ -787,7 +789,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 1500 , 1500, 100, 5000, 5000 }
+#define DEFAULT_MAX_ACCELERATION      { 1500 , 1500, 100, 1000, 1000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -814,17 +816,17 @@
  * When changing speed and direction, if the difference is less than the
  * value set here, it may happen instantaneously.
  */
-//#define CLASSIC_JERK
+#define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 10.0
-  #define DEFAULT_YJERK 10.0
+  #define DEFAULT_XJERK 7.0
+  #define DEFAULT_YJERK DEFAULT_XJERK
   #define DEFAULT_ZJERK  0.3
 
   //#define TRAVEL_EXTRA_XYJERK 0.0     // Additional jerk allowance for all travel moves
 
   //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
   #if ENABLED(LIMITED_JERK_EDITING)
-    #define MAX_JERK_EDIT_VALUES { 20, 20, 0.6, 10 } // ...or, set your own edit limits
+    #define MAX_JERK_EDIT_VALUES { 12, 12, 0.6, 10 } // ...or, set your own edit limits
   #endif
 #endif
 
@@ -838,9 +840,10 @@
  *   https://blog.kyneticcnc.com/2018/10/computing-junction-deviation-for-marlin.html
  */
 #if DISABLED(CLASSIC_JERK)
-  #define JUNCTION_DEVIATION_MM 0.4 * 10 * 10 / DEFAULT_ACCELERATION// 0.0216 //0.013 // (mm) Distance from real junction edge
+  #define JUNCTION_DEVIATION_MM 0.35 / DEFAULT_ACCELERATION// 0.0216 //0.013 // (mm) Distance from real junction edge
   #define JD_HANDLE_SMALL_SEGMENTS    // Use curvature estimation instead of just the junction angle
                                       // for small segments (< 1mm) with large junction angles (> 135°).
+                                      // MAX_E_JERK(N) = SQRT((SQRT(0.5) * max_acceleration_mm_per_s2[E_AXIS] * junction_deviation_mm) / (1 - SQRT(0.5)))
 #endif
 
 /**
@@ -851,7 +854,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-//#define S_CURVE_ACCELERATION
+#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1012,7 +1015,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -12, 74, -0.2 }
+#define NOZZLE_TO_PROBE_OFFSET { -12, 79, 0 }
 #define ProbeDiameter 12
 
 // Most probes should stay away from the edges of the bed, but
@@ -1149,15 +1152,15 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 295  // miroir 298
-#define Y_BED_SIZE 295  // miroir 298
+#define X_BED_SIZE 295  
+#define Y_BED_SIZE 295  
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS -17
 #define Y_MIN_POS -35
 #define Z_MIN_POS -2
-#define X_MAX_POS 308
-#define Y_MAX_POS 298
+#define X_MAX_POS 310
+#define Y_MAX_POS 301 // possible jusqu a 309
 #define Z_MAX_POS 307 + Z_MIN_POS
 
 /**
