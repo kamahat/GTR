@@ -522,7 +522,7 @@
 
 // If you want endstops to stay on (by default) even when not homing
 // enable this option. Override at any time with M120, M121.
-//#define ENDSTOPS_ALWAYS_ON_DEFAULT
+#define ENDSTOPS_ALWAYS_ON_DEFAULT
 
 // @section extras
 
@@ -576,7 +576,7 @@
 #define NUM_Z_STEPPER_DRIVERS 2   // (1-4) Z options change based on how many
 
 #if NUM_Z_STEPPER_DRIVERS > 1
-  #define Z_MULTI_ENDSTOPS
+  //#define Z_MULTI_ENDSTOPS
   #if ENABLED(Z_MULTI_ENDSTOPS)
     #define Z2_USE_ENDSTOP          Z2_MIN_PIN //_ZMAX_
     #define Z2_ENDSTOP_ADJUSTMENT   0
@@ -2341,10 +2341,10 @@
   #endif
 
   #if AXIS_IS_TMC(Z2)
-    #define Z2_CURRENT      650
+    #define Z2_CURRENT      Z_CURRENT
     #define Z2_CURRENT_HOME Z2_CURRENT
-    #define Z2_MICROSTEPS    8
-    #define Z2_RSENSE         0.11
+    #define Z2_MICROSTEPS    Z_MICROSTEPS
+    #define Z2_RSENSE         Z_RSENSE
     #define Z2_CHAIN_POS     -1
     #define Z2_INTERPOLATE true
   #endif
