@@ -2334,7 +2334,7 @@
   #if AXIS_IS_TMC(Z)
     #define Z_CURRENT       650
     #define Z_CURRENT_HOME  Z_CURRENT
-    #define Z_MICROSTEPS     8
+    #define Z_MICROSTEPS     16
     #define Z_RSENSE          0.11
     #define Z_CHAIN_POS      -1
     #define Z_INTERPOLATE  true
@@ -2523,9 +2523,11 @@
    * { <off_time[1..15]>, <hysteresis_end[-3..12]>, hysteresis_start[1..8] }
    */
   #define CHOPPER_TIMING    {3,0,4}        // All axes (override below)
-  #define CHOPPER_TIMING_X  {4,-1,1}   // For X Axes (override below)
+  //#define CHOPPER_TIMING_X  {4,-1,1}   // For X Axes (override below)
+  #define CHOPPER_TIMING_X  {3,3,0}   // For X Axes (override below)
   //#define CHOPPER_TIMING_X2 CHOPPER_DEFAULT_12V
-  #define CHOPPER_TIMING_Y  {4,-1,1}   // For Y Axes (override below)
+  //#define CHOPPER_TIMING_Y  {4,-1,1}   // For Y Axes (override below)
+  #define CHOPPER_TIMING_Y  {3,3,0}   // For Y Axes (override below)
   //#define CHOPPER_TIMING_Y2 CHOPPER_DEFAULT_12V
   //#define CHOPPER_TIMING_Z  CHOPPER_DEFAULT_12V   // For Z Axes (override below)
   //#define CHOPPER_TIMING_Z2 CHOPPER_DEFAULT_12V

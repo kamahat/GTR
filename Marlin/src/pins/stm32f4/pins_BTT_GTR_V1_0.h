@@ -244,29 +244,29 @@
   #define Z_SERIAL_TX_PIN                   PB5
   #define Z_SERIAL_RX_PIN                   PB5
 
-  #define E0_SERIAL_TX_PIN                  PG10
-  #define E0_SERIAL_RX_PIN                  PG10
+  #define Z2_SERIAL_TX_PIN                  PG10
+  #define Z2_SERIAL_RX_PIN                  PG10
 
-  #define E1_SERIAL_TX_PIN                  PD4
-  #define E1_SERIAL_RX_PIN                  PD4
+  #define E0_SERIAL_TX_PIN                  PD4
+  #define E0_SERIAL_RX_PIN                  PD4
 
-  #define E2_SERIAL_TX_PIN                  PC12
-  #define E2_SERIAL_RX_PIN                  PC12
+  #define E1_SERIAL_TX_PIN                  PC12
+  #define E1_SERIAL_RX_PIN                  PC12
 
-  #define E3_SERIAL_TX_PIN                  PG4
-  #define E3_SERIAL_RX_PIN                  PG4
+  #define E2_SERIAL_TX_PIN                  PG4
+  #define E2_SERIAL_RX_PIN                  PG4
 
-  #define E4_SERIAL_TX_PIN                  PE15
-  #define E4_SERIAL_RX_PIN                  PE15
+  #define E3_SERIAL_TX_PIN                  PE15
+  #define E3_SERIAL_RX_PIN                  PE15
 
-  #define E5_SERIAL_TX_PIN                  PE7
-  #define E5_SERIAL_RX_PIN                  PE7
+  #define E4_SERIAL_TX_PIN                  PE7
+  #define E4_SERIAL_RX_PIN                  PE7
 
-  #define E6_SERIAL_TX_PIN                  PF15
-  #define E6_SERIAL_RX_PIN                  PF15
+  #define E5_SERIAL_TX_PIN                  PF15
+  #define E5_SERIAL_RX_PIN                  PF15
 
-  #define E7_SERIAL_TX_PIN                  PH14
-  #define E7_SERIAL_RX_PIN                  PH14
+  #define E6_SERIAL_TX_PIN                  PH14
+  #define E6_SERIAL_RX_PIN                  PH14
 
   // Reduce baud rate to improve software serial reliability
   #define TMC_BAUD_RATE                    19200
